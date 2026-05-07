@@ -3,6 +3,7 @@ import SearchBar from './features/search/SearchBar';
 import mockPosts from './data/mockPosts';
 import PostsList from './features/posts/PostsList';
 import Filters from './features/filters/Filters';
+import './App.css';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,7 +19,9 @@ function App() {
 
   return (
     <main>
-      <h1>Reddit Client</h1>
+      <header className="header">
+        <div className="logo">Reddit<span>Lite</span></div>
+      </header>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Filters setFilter={setFilter} />
       <PostsList posts={filteredPosts} />
