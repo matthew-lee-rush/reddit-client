@@ -86,3 +86,9 @@ button:hover {
   border-radius: 16px;
   text-align: center;
 }
+
+.sidebar {
+  position: sticky;
+  top: 16px;
+  align-self: start;
+}

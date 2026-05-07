@@ -5,7 +5,7 @@ const mockPosts = [
     subreddit: 'reactjs',
     author: 'user1',
     ups: 100,
-    image: 'https://via.placeholder.com/150',
+    image: 'https://picsum.photos/150',
   },
   {
     id: '2',
@@ -13,7 +13,7 @@ const mockPosts = [
     subreddit: 'javascript',
     author: 'user2',
     ups: 150,
-    image: 'https://via.placeholder.com/150',
+    image: 'https://picsum.photos/150',
     }
 ];
 

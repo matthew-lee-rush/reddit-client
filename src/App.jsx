@@ -4,6 +4,7 @@ import mockPosts from './data/mockPosts';
 import PostsList from './features/posts/PostsList';
 import Filters from './features/filters/Filters';
 import './App.css';
+import TopCommunities from './components/TopCommunities';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,16 +18,27 @@ function App() {
     filter ? post.subreddit === filter : true
   );
 
-  return (
-    <main>
-      <header className="header">
-        <div className="logo">Reddit<span>Lite</span></div>
-      </header>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Filters setFilter={setFilter} />
-      <PostsList posts={filteredPosts} />
-    </main>
-  );
+return (
+  <main className="layout">
+    <header className="header">
+      <div className="logo">Reddit<span>Lite</span></div>
+    </header>
+
+    <div className="content">
+      {/* LEFT: main feed */}
+      <section className="main-feed">
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <Filters setFilter={setFilter} />
+        <PostsList posts={filteredPosts} />
+      </section>
+
+      {/* RIGHT: sidebar */}
+      <aside className="sidebar">
+        <TopCommunities />
+      </aside>
+    </div>
+  </main>
+ );
 }
 
 export default App;
