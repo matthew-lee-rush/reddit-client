@@ -1,22 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from './features/search/SearchBar';
-import mockPosts from './data/mockPosts';
+// import mockPosts from './data/mockPosts';
 import PostsList from './features/posts/PostsList';
 import Filters from './features/filters/Filters';
 import logoImg from './assets/RLTransparrent.png';
 import './App.css';
 import TopCommunities from './components/TopCommunities';
+import { fetchSubredditPosts } from './api/reddit';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('');
+  const [posts, setPosts] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const filteredPosts = mockPosts
-  .filter(post =>
-    post.title.toLowerCase().includes(searchTerm.toLowerCase())
-  )
-  .filter(post =>
-    filter ? post.subreddit === filter : true
+  useEffect(() => {
+  async function loadPosts() {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const data = await fetchSubredditPosts(filter || 'reactjs');
+
+      setPosts(data.data.children);
+    } catch (err) {
+      setError(
+        err.message === 'rate_limit'
+          ? 'Rate limit reached. Please wait a moment.'
+          : 'Failed to load posts.'
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  loadPosts();
+ }, [filter]);
+
+  const filteredPosts = posts.filter(post =>
+  post.data?.title?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
