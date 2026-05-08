@@ -72,37 +72,31 @@ main {
   gap: 16px;
 }
 
-.post-media {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-
-.post-media > img {
+.post-image {
   width: 100%;
   border-radius: 12px;
+  display: block;
+  margin-bottom: 12px;
 }
 
 .vote-group {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  margin-bottom: 8px;
 }
 
 .vote-icon {
-  width: 42px;
-  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  background: white;
-  border: 1px solid #d6d6d6;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
 
 .vote-icon img {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 
 .vote-icon.down img {
@@ -118,7 +112,7 @@ main {
 .post-card p {
   color: #444;
   font-size: 14px;
-  margin: 4px 0 0 0;
+  margin: 4px 0 0 10px;
   text-align: left;
 }
 
