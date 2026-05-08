@@ -3,6 +3,7 @@ import SearchBar from './features/search/SearchBar';
 import mockPosts from './data/mockPosts';
 import PostsList from './features/posts/PostsList';
 import Filters from './features/filters/Filters';
+import logoImg from '../RedditLite.png';
 import './App.css';
 import TopCommunities from './components/TopCommunities';
 
@@ -18,13 +19,14 @@ function App() {
     filter ? post.subreddit === filter : true
   );
 
-return (
-  <main className="layout">
-    <header className="header">
-      <div className="logo">Reddit<span>Lite</span></div>
-    </header>
+  return (
+    <main className="layout">
+      <header className="header">
+        <img src={logoImg} alt="RedditLite logo" className="logo-image" />
+        <div className="logo">Reddit<span>Lite</span></div>
+      </header>
 
-    <div className="content">
+      <div className="content">
       {/* LEFT: main feed */}
       <section className="main-feed">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
