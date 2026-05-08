@@ -3,7 +3,7 @@ import SearchBar from './features/search/SearchBar';
 import mockPosts from './data/mockPosts';
 import PostsList from './features/posts/PostsList';
 import Filters from './features/filters/Filters';
-import logoImg from '../RedditLite.png';
+import logoImg from './assets/RLTransparrent.png';
 import './App.css';
 import TopCommunities from './components/TopCommunities';
 

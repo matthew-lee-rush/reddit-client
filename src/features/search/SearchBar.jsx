@@ -5,6 +5,7 @@ function SearchBar({ searchTerm, setSearchTerm }) {
       placeholder="Search posts..."
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
+      className="search-bar"
     />
   );
 }
