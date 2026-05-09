@@ -24,3 +24,21 @@ export async function fetchSubredditPosts(subreddit = "popular") {
     throw error;
   }
 }
+
+export async function fetchTopCommunities() {
+  try {
+    const response = await fetch(
+      "https://www.reddit.com/subreddits/popular.json?limit=10"
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch communities");
+    }
+
+    const data = await response.json();
+    return data.data.children; // same structure pattern
+  } catch (error) {
+    console.error("Failed to fetch communities:", error);
+    throw error;
+  }
+}

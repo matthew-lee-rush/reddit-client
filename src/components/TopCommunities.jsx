@@ -1,31 +1,43 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { fetchTopCommunities } from "../api/reddit";
 import "./TopCommunities.css";
 
-const mockCommunities = [
-  { name: "r/reactjs", members: "2.1M" },
-  { name: "r/javascript", members: "2.5M" },
-  { name: "r/webdev", members: "1.9M" },
-  { name: "r/frontend", members: "950K" },
-  { name: "r/programming", members: "5.2M" },
-];
+function TopCommunities({ setFilter }) {
+  const [communities, setCommunities] = useState([]);
 
-export default function TopCommunities() {
+  useEffect(() => {
+    async function loadCommunities() {
+      try {
+        const data = await fetchTopCommunities();
+        setCommunities(data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    loadCommunities();
+  }, []);
+
   return (
-    <aside className="top-communities">
-      <h2 className="title">Top Communities</h2>
-
+    <div className="top-communities">
+      <h3 className="title">Top Communities</h3>
       <ul className="community-list">
-        {mockCommunities.map((community) => (
-          <li key={community.name} className="community-item">
-            <span className="community-name">{community.name}</span>
-            <span className="community-members">
-              {community.members} members
-            </span>
-          </li>
-        ))}
+        {communities.map((community) => {
+          const data = community.data;
+
+          return (
+            <li
+                key={data.id}
+                className="community-item"
+                onClick={() => setFilter(data.display_name)}
+                >
+                {data.display_name_prefixed}
+            </li>
+          );
+        })}
       </ul>
-    </aside>
+    </div>
   );
 }
 
-console.log("TopCommunities loaded");
+export default TopCommunities;

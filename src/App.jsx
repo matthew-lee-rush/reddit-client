@@ -54,7 +54,7 @@ function App() {
 
       {/* RIGHT: sidebar */}
       <aside className="sidebar">
-        <TopCommunities />
+        <TopCommunities setFilter={setFilter} />
       </aside>
     </div>
   </main>
