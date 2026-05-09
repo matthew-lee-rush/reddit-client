@@ -3,11 +3,11 @@ import "@testing-library/jest-dom";
 import PostCard from "./PostCard";
 
 const mockPost = {
-  id: "1",
-  title: "Test Post",
-  subreddit: "reactjs",
-  ups: 123,
-  image: "https://picsum.photos/150",
+  data: {
+    title: 'Test Post',
+    ups: 123,
+    subreddit_name_prefixed: 'r/reactjs',
+  },
 };
 
 test("renders post title", () => {

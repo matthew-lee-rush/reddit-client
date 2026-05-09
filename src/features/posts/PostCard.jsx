@@ -1,6 +1,6 @@
 import upvoteIcon from "../../assets/UpVote.png";
 
-function PostCard({ post }) {
+function PostCard({ post, onClick }) {
   const data = post.data || post;
 
   if (!data) return null;
@@ -10,7 +10,7 @@ function PostCard({ post }) {
     (data.url?.match(/\.(jpg|jpeg|png|gif)$/) ? data.url : null);
 
   return (
-    <div className="post-card">
+    <div className="post-card" onClick={onClick}>
       <h3>{data.title}</h3>
 
       {imageUrl && (
