@@ -1,16 +1,85 @@
-# React + Vite
+# Reddit Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Reddit client built with React that allows users to browse posts, search subreddits, and filter content by popularity, recency, and trending topics.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Search Reddit posts by keyword or subreddit
+- Filter posts by **Top**, **New**, and **Hot**
+- View top communities at a glance
+- Clean, responsive UI for desktop and mobile
+- Fast client-side rendering using React
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React (Vite)
+- JavaScript (ES6+)
+- CSS (custom styling)
+- Reddit API (public JSON endpoints)
+- Testing Library / Vitest (if applicable)
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── api/          # Reddit API calls
+├── assets/       # Images and static files
+├── components/   # Shared UI components
+├── features/     # Feature-based modules
+│   ├── posts/
+│   ├── search/
+│   └── filters/
+├── App.jsx
+├── main.jsx
+└── App.css
+```
+
+## Installation & Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/reddit-client.git
+cd reddit-client
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Run tests (if applicable):
+
+```bash
+npm test
+```
+
+## API
+
+This project uses Reddit's public JSON API to fetch posts.
+
+## Current Features
+
+- Post cards with title, subreddit, and upvotes
+- Image preview support (where available)
+- Filter system (Top / New / Hot)
+- Top Communities sidebar
+
+## Future Improvements
+
+- Infinite scroll / pagination
+- Dark mode toggle
+- Comment viewing
+- Reddit login authentication
+- Save/favourite posts
+
+## License
+
+This project is for educational purposes.
