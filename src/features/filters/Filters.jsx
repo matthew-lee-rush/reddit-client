@@ -1,9 +1,9 @@
 function Filters({ setFilter }) {
   return (
     <div className="filters">
-      <button onClick={() => setFilter('')}>All</button>
-      <button onClick={() => setFilter('reactjs')}>React</button>
-      <button onClick={() => setFilter('javascript')}>JavaScript</button>
+      <button onClick={() => setFilter('')}>Hot</button>
+      <button onClick={() => setFilter('reactjs')}>New</button>
+      <button onClick={() => setFilter('javascript')}>Top</button>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import logoImg from './assets/RLTransparrent.png';
 import './App.css';
 import TopCommunities from './components/TopCommunities';
 import { fetchSubredditPosts } from './api/reddit';
+import PostDetail from './features/posts/PostDetail';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,6 +14,7 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
     async function loadPosts() {
@@ -49,7 +51,17 @@ function App() {
       <section className="main-feed">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <Filters setFilter={setFilter} />
-        <PostsList posts={filteredPosts} />
+        {selectedPost ? (
+  <PostDetail
+    post={selectedPost}
+    onBack={() => setSelectedPost(null)}
+  />
+) : (
+  <PostsList
+    posts={filteredPosts}
+    onPostClick={setSelectedPost}
+  />
+)}
       </section>
 
       {/* RIGHT: sidebar */}
