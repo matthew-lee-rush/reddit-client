@@ -15,6 +15,7 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [sort, setSort] = useState('hot');
 
   useEffect(() => {
     async function loadPosts() {
@@ -22,7 +23,7 @@ function App() {
       setError(null);
 
       try {
-        const data = await fetchSubredditPosts(filter || 'popular');
+        const data = await fetchSubredditPosts(filter || 'popular', sort);
         setPosts(data);
       } catch (err) {
         console.error('Error fetching posts:', err);
@@ -33,7 +34,7 @@ function App() {
     }
 
     loadPosts();
-  }, [filter]);
+  }, [filter, sort]);
 
   const filteredPosts = posts.filter(post =>
     post.data?.title?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -50,18 +51,18 @@ function App() {
       {/* LEFT: main feed */}
       <section className="main-feed">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <Filters setFilter={setFilter} />
+        <Filters setSort={setSort} />
         {selectedPost ? (
-  <PostDetail
-    post={selectedPost}
-    onBack={() => setSelectedPost(null)}
-  />
-) : (
-  <PostsList
-    posts={filteredPosts}
-    onPostClick={setSelectedPost}
-  />
-)}
+      <PostDetail
+        post={selectedPost}
+        onBack={() => setSelectedPost(null)}
+      />
+    ) : (
+      <PostsList
+        posts={filteredPosts}
+        onPostClick={setSelectedPost}
+      />
+    )}
       </section>
 
       {/* RIGHT: sidebar */}

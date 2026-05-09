@@ -1,9 +1,9 @@
-function Filters({ setFilter }) {
+function Filters({ setSort }) {
   return (
     <div className="filters">
-      <button onClick={() => setFilter('')}>Hot</button>
-      <button onClick={() => setFilter('reactjs')}>New</button>
-      <button onClick={() => setFilter('javascript')}>Top</button>
+      <button onClick={() => setSort('hot')}>Hot</button>
+      <button onClick={() => setSort('new')}>New</button>
+      <button onClick={() => setSort('top')}>Top</button>
     </div>
   );
 }

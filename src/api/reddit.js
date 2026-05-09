@@ -1,13 +1,14 @@
 const cache = {};
 
-export async function fetchSubredditPosts(subreddit = "popular") {
-  if (cache[subreddit]) {
-    return cache[subreddit];
+export async function fetchSubredditPosts(subreddit = "popular", sort = "hot") {
+  const cacheKey = `${subreddit}_${sort}`;
+  if (cache[cacheKey]) {
+    return cache[cacheKey];
   }
 
   try {
     const response = await fetch(
-      `https://www.reddit.com/r/${subreddit}.json?limit=25`
+      `https://www.reddit.com/r/${subreddit}/${sort}.json?limit=25`
     );
 
     if (!response.ok) {
@@ -16,8 +17,8 @@ export async function fetchSubredditPosts(subreddit = "popular") {
 
     const data = await response.json();
 
-    cache[subreddit] = data.data.children; // 👈 return usable posts only
-    return cache[subreddit];
+    cache[cacheKey] = data.data.children; // 👈 return usable posts only
+    return cache[cacheKey];
 
   } catch (error) {
     console.error("Failed to fetch:", error);
