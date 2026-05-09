@@ -1,10 +1,22 @@
 import upvoteIcon from "../../assets/UpVote.png";
 
 function PostCard({ post }) {
+  const data = post.data || post;
+
+  if (!data) return null;
+
+  const imageUrl =
+    data.preview?.images?.[0]?.source?.url?.replace(/&amp;/g, '&') ||
+    (data.url?.match(/\.(jpg|jpeg|png|gif)$/) ? data.url : null);
+
   return (
     <div className="post-card">
-      <h3>{post.title}</h3>
-      <img src={post.image} alt="" className="post-image" />
+      <h3>{data.title}</h3>
+
+      {imageUrl && (
+        <img src={imageUrl} alt={data.title} className="post-image" />
+      )}
+
       <div className="vote-group">
         <div className="vote-icon up">
           <img src={upvoteIcon} alt="Upvote" />
@@ -13,7 +25,8 @@ function PostCard({ post }) {
           <img src={upvoteIcon} alt="Downvote" />
         </div>
       </div>
-      <p>r/{post.subreddit} • {post.ups} upvotes</p>
+
+      <p>{data.subreddit_name_prefixed} • {data.ups} upvotes</p>
     </div>
   );
 }

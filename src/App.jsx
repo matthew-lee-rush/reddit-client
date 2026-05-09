@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import SearchBar from './features/search/SearchBar';
-// import mockPosts from './data/mockPosts';
 import PostsList from './features/posts/PostsList';
 import Filters from './features/filters/Filters';
 import logoImg from './assets/RLTransparrent.png';
@@ -13,33 +12,29 @@ function App() {
   const [filter, setFilter] = useState('');
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  async function loadPosts() {
-    setLoading(true);
-    setError(null);
+    async function loadPosts() {
+      setLoading(true);
+      setError(null);
 
-    try {
-      const data = await fetchSubredditPosts(filter || 'reactjs');
-
-      setPosts(data.data.children);
-    } catch (err) {
-      setError(
-        err.message === 'rate_limit'
-          ? 'Rate limit reached. Please wait a moment.'
-          : 'Failed to load posts.'
-      );
-    } finally {
-      setLoading(false);
+      try {
+        const data = await fetchSubredditPosts(filter || 'popular');
+        setPosts(data);
+      } catch (err) {
+        console.error('Error fetching posts:', err);
+        setError('Failed to load posts from Reddit');
+      } finally {
+        setLoading(false);
+      }
     }
-  }
 
-  loadPosts();
- }, [filter]);
+    loadPosts();
+  }, [filter]);
 
   const filteredPosts = posts.filter(post =>
-  post.data?.title?.toLowerCase().includes(searchTerm.toLowerCase())
+    post.data?.title?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
